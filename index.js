@@ -225,40 +225,39 @@ ipcMain.on(MSFT_OPCODE.OPEN_LOGOUT, (ipcEvent, uuid, isLastAccount) => {
 let win
 
 function createWindow() {
-
+    
     win = new BrowserWindow({
-        width: 980,
-        height: 552,
+        width: 1280,
+        height: 720,
         icon: getPlatformIcon('SealCircle'),
         frame: false,
+        resizable: false, // Desactiva el redimensionamiento
         webPreferences: {
             preload: path.join(__dirname, 'app', 'assets', 'js', 'preloader.js'),
             nodeIntegration: true,
             contextIsolation: false
         },
         backgroundColor: '#171614'
-    })
-    remoteMain.enable(win.webContents)
+    });
+    remoteMain.enable(win.webContents);
 
     const data = {
         bkid: Math.floor((Math.random() * fs.readdirSync(path.join(__dirname, 'app', 'assets', 'images', 'backgrounds')).length)),
         lang: (str, placeHolders) => LangLoader.queryEJS(str, placeHolders)
-    }
-    Object.entries(data).forEach(([key, val]) => ejse.data(key, val))
+    };
+    Object.entries(data).forEach(([key, val]) => ejse.data(key, val));
 
-    win.loadURL(pathToFileURL(path.join(__dirname, 'app', 'app.ejs')).toString())
+    win.loadURL(pathToFileURL(path.join(__dirname, 'app', 'app.ejs')).toString());
 
-    /*win.once('ready-to-show', () => {
-        win.show()
-    })*/
+    win.removeMenu();
 
-    win.removeMenu()
-
-    win.resizable = true
+    // win.once('ready-to-show', () => {
+    //     win.show();
+    // });
 
     win.on('closed', () => {
-        win = null
-    })
+        win = null;
+    });
 }
 
 function createMenu() {
