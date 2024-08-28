@@ -1984,7 +1984,6 @@ input:checked + .toggleSwitchSlider:before {
 .settingsChangelogText a:active {
     color: rgba(165, 165, 165, 0.75);
 }
-
 /* Main container for memory management. */
 #settingsMemoryContainer {
     width: 75%;
@@ -2265,7 +2264,6 @@ input:checked + .toggleSwitchSlider:before {
 
 /* Styles for the changelog elements. */
 .settingsChangelogText p {
-    margin-bottom: 16px;
     line-height: 1.5;
 }
 .settingsChangelogText blockquote {
@@ -3207,7 +3205,7 @@ input:checked + .toggleSwitchSlider:before {
     font-size: 8px;
     font-weight: 900;
     text-shadow: 0px 0px 20px #949494;
-    margin-left: 10px;
+    margin-left: 5px;
 }
 
 /* Wrapper container for the mojang status bar. */
