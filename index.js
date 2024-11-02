@@ -358,3 +358,44 @@ app.on('activate', () => {
         createWindow()
     }
 })
+
+function createWindow() {
+    
+    win = new BrowserWindow({
+        width: 1280,
+        height: 720,
+        icon: getPlatformIcon('SealCircle'),
+        frame: false,
+        resizable: false, // Desactiva el redimensionamiento
+        webPreferences: {
+            preload: path.join(__dirname, 'app', 'assets', 'js', 'preloader.js'),
+            nodeIntegration: true,
+            contextIsolation: false
+        },
+        backgroundColor: '#171614'
+    });
+    remoteMain.enable(win.webContents);
+
+    // Evitar la maximización por doble clic
+    win.on('maximize', () => {
+        win.unmaximize(); // Revertir la acción de maximización
+    });
+
+    const data = {
+        bkid: Math.floor((Math.random() * fs.readdirSync(path.join(__dirname, 'app', 'assets', 'images', 'backgrounds')).length)),
+        lang: (str, placeHolders) => LangLoader.queryEJS(str, placeHolders)
+    };
+    Object.entries(data).forEach(([key, val]) => ejse.data(key, val));
+
+    win.loadURL(pathToFileURL(path.join(__dirname, 'app', 'app.ejs')).toString());
+
+    win.removeMenu();
+
+    // win.once('ready-to-show', () => {
+    //     win.show();
+    // });
+
+    win.on('closed', () => {
+        win = null;
+    });
+}

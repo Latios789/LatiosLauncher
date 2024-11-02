@@ -35,7 +35,7 @@ loginPasswordDisclaimer1 = "Tu contraseña se envía directamente a Mojang y nun
 loginPasswordDisclaimer2 = "{appName} no está afiliado con Mojang AB."
 
 [ejs.loginOptions]
-loginOptionsTitle = "Opciones de Inicio de Sesión"
+loginOptionsTitle = "Inicio de Sesión"
 loginWithMicrosoft = "Iniciar sesión con Microsoft"
 loginWithMojang = "Iniciar sesión con Mojang"
 cancelButton = "Cancelar"
